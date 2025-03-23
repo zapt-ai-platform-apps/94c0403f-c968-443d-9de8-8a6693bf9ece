@@ -1,51 +1,21 @@
-/**
- * Central module exports and initialization
- */
-import { eventBus } from './core';
 import pumpFunWebSocketService from './dashboard/internal/pumpFunWebSocketService';
-import * as Sentry from '@sentry/browser';
 
-// Initialize function for all modules
+/**
+ * Initialize all modules
+ * @returns {Promise<void>}
+ */
 export async function initializeModules() {
-  console.log('Initializing all modules...');
-  
-  // Subscribe to important events for logging/debugging
-  eventBus.subscribe('dashboard/timeframe-changed', (timeframe) => {
-    console.log('Timeframe changed:', timeframe);
-  });
-  
-  eventBus.subscribe('developers/developer-loaded', (developer) => {
-    console.log('Developer loaded:', developer.id);
-  });
-  
-  // Connect to Pump.fun WebSocket for real-time updates
   try {
+    console.log('Initializing modules...');
+    
+    // Initialize WebSocket connection to Pump.fun
     await pumpFunWebSocketService.connect();
-    console.log('Connected to Pump.fun real-time API');
+    console.log('WebSocket connection initialized successfully');
     
-    // Subscribe to websocket events for logging
-    eventBus.subscribe('dashboard/pumpfun-developers-updated', (data) => {
-      console.log(`Received update for ${data.length} developers`);
-    });
+    // Add other module initializations here in the future if needed
     
-    eventBus.subscribe('dashboard/pumpfun-projects-updated', (data) => {
-      console.log(`Received update for ${data.length} projects`);
-    });
-    
-    eventBus.subscribe('dashboard/pumpfun-websocket-disconnected', () => {
-      console.warn('Disconnected from Pump.fun real-time API');
-    });
   } catch (error) {
-    console.error('Failed to connect to Pump.fun real-time API:', error);
-    Sentry.captureException(error);
+    console.error('Error initializing modules:', error);
+    // We don't throw here to allow the app to continue loading even if module init fails
   }
-  
-  console.log('All modules initialized');
 }
-
-// Re-export everything from individual module APIs
-export * from './core';
-export * from './dashboard/api';
-export * from './developers/api';
-export * from './projects/api';
-export * from './layout/api';
