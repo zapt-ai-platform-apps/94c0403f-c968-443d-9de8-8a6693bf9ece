@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDashboard, TimeframeSelector } from '@/modules/dashboard/api';
+import { useDashboard, TimeframeSelector, RealTimeIndicator } from '@/modules/dashboard/api';
 import { DevelopersList } from '@/modules/developers/api';
 
 export default function PumperLeaderboard() {
@@ -15,7 +15,7 @@ export default function PumperLeaderboard() {
   
   if (error) {
     return (
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
+      <div className="bg-red-900 border border-red-600 text-red-200 px-4 py-3 rounded mt-4">
         <p>{error}</p>
       </div>
     );
@@ -26,10 +26,13 @@ export default function PumperLeaderboard() {
   return (
     <div>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-        <h1 className="text-2xl font-bold mb-4 md:mb-0">Top Pumpers Leaderboard</h1>
+        <div>
+          <h1 className="text-2xl font-bold mb-2">Top Pumpers Leaderboard</h1>
+          <RealTimeIndicator />
+        </div>
         <TimeframeSelector />
       </div>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-400 mb-6">
         Developers ranked by their Pump Rate - a measure of how successful they are at increasing the value 
         of their projects. Higher percentages indicate developers with better price performance.
       </p>

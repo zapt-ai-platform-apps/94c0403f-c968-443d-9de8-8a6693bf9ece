@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import RatingBadge from './RatingBadge';
 import { loadDeveloperById, calculateSuccessRate, calculateRugRate } from '../internal/service';
 import { ProjectsTable } from '../../projects/api';
+import { RealTimeIndicator } from '../../dashboard/api';
 import * as Sentry from '@sentry/browser';
 
 /**
@@ -73,13 +74,14 @@ export default function DeveloperDetail({ id }) {
   
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-6 flex justify-between items-center">
         <Link to="/" className="text-green-400 hover:text-green-300 flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to Dashboard
         </Link>
+        <RealTimeIndicator />
       </div>
       
       <div className={`bg-gray-900 rounded-lg shadow p-6 mb-8 border-2 ${borderClass}`}>

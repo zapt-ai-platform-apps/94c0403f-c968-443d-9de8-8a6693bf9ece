@@ -6,6 +6,7 @@ import DashboardProvider from './ui/DashboardProvider';
 import TimeframeSelector from './ui/TimeframeSelector';
 import StatCard from './ui/StatCard';
 import DeveloperDistributionChart from './ui/DeveloperDistributionChart';
+import RealTimeIndicator from './ui/RealTimeIndicator';
 
 // Re-export context hook with a more generic name
 export const useDashboard = useDashboardContext;
@@ -15,7 +16,8 @@ export {
   DashboardProvider,
   TimeframeSelector,
   StatCard,
-  DeveloperDistributionChart
+  DeveloperDistributionChart,
+  RealTimeIndicator
 };
 
 // Export events object

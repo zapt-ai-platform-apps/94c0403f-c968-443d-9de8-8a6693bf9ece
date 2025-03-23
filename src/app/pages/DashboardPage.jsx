@@ -1,5 +1,11 @@
 import React from 'react';
-import { useDashboard, TimeframeSelector, StatCard, DeveloperDistributionChart } from '@/modules/dashboard/api';
+import { 
+  useDashboard, 
+  TimeframeSelector, 
+  StatCard, 
+  DeveloperDistributionChart,
+  RealTimeIndicator
+} from '@/modules/dashboard/api';
 import { TopDevelopersTable } from '@/modules/developers/api';
 
 export default function DashboardPage() {
@@ -21,7 +27,7 @@ export default function DashboardPage() {
   
   if (error) {
     return (
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
+      <div className="bg-red-900 border border-red-600 text-red-200 px-4 py-3 rounded mt-4">
         <p>{error}</p>
       </div>
     );
@@ -36,7 +42,10 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-        <h1 className="text-2xl font-bold mb-4 md:mb-0">Dump.fun Dashboard</h1>
+        <div>
+          <h1 className="text-2xl font-bold mb-2">Dump.fun Dashboard</h1>
+          <RealTimeIndicator />
+        </div>
         <TimeframeSelector />
       </div>
       
