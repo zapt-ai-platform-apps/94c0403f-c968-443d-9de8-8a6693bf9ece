@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="bg-gray-900 shadow-sm border-b border-gray-800">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
@@ -12,7 +12,7 @@ export default function Navbar() {
               alt="Dump.fun Logo"
               className="h-8 w-8 mr-2"
             />
-            <h1 className="text-xl font-bold text-blue-600">Dump.fun</h1>
+            <h1 className="text-xl font-bold text-green-400">Dump.fun</h1>
           </div>
           <div className="hidden md:flex space-x-1">
             <NavLink 

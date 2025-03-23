@@ -28,19 +28,19 @@ export default function DeveloperDistributionChart({ developers }) {
     });
     
     return [
-      { name: 'Very Low (0-2)', value: distribution.veryLow, color: '#EF4444' },
-      { name: 'Low (2.1-4)', value: distribution.low, color: '#F97316' },
-      { name: 'Medium (4.1-6)', value: distribution.medium, color: '#EAB308' },
-      { name: 'High (6.1-8)', value: distribution.high, color: '#22C55E' },
-      { name: 'Very High (8.1-10)', value: distribution.veryHigh, color: '#3B82F6' }
+      { name: 'Very Low (0-2)', value: distribution.veryLow, color: '#ef4444' },
+      { name: 'Low (2.1-4)', value: distribution.low, color: '#f97316' },
+      { name: 'Medium (4.1-6)', value: distribution.medium, color: '#eab308' },
+      { name: 'High (6.1-8)', value: distribution.high, color: '#22c55e' },
+      { name: 'Very High (8.1-10)', value: distribution.veryHigh, color: '#3b82f6' }
     ];
   };
   
   const data = getDistribution();
   
   return (
-    <div className="bg-white rounded-lg shadow p-4 h-80">
-      <h3 className="text-lg font-bold mb-4">Developer Rating Distribution</h3>
+    <div className="bg-gray-900 rounded-lg shadow p-4 h-80 border border-gray-800">
+      <h3 className="text-lg font-bold mb-4 text-white">Developer Rating Distribution</h3>
       <ResponsiveContainer width="100%" height="85%">
         <PieChart>
           <Pie
@@ -53,11 +53,17 @@ export default function DeveloperDistributionChart({ developers }) {
             dataKey="value"
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
+              <Cell key={`cell-${index}`} fill={entry.color} stroke="#000" />
             ))}
           </Pie>
-          <Tooltip formatter={(value) => [`${value} developers`, '']} />
-          <Legend />
+          <Tooltip 
+            formatter={(value) => [`${value} developers`, '']} 
+            contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#e5e7eb' }}
+            itemStyle={{ color: '#e5e7eb' }}
+          />
+          <Legend 
+            formatter={(value) => <span style={{ color: '#e5e7eb' }}>{value}</span>}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>
